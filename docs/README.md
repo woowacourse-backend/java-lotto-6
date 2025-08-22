@@ -77,6 +77,12 @@
 - [ ] `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현
   - [ ] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
   - [ ] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용
+
+## Lotto 클래스
+- 제공된 `Lotto` 클래스를 활용해 구현
+- `numbers`의 접근 제어자인 private을 변경 X
+- `Lotto`에 필드 추가 X
+- `Lotto`의 패키지 변경 가능 O
 ---
 ## 과제 진행 요구사항
 - [ ] Git의 커밋 단위는 `docs/README.md`에 정리한 기능 목록 단위로 추가
