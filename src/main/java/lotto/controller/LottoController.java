@@ -34,6 +34,9 @@ public class LottoController {
         List<Integer> winningNumber = getWinningNumber();
         System.out.println();
 
+        // 보너스 번호 입력
+        InputView.bonusNumberInput();
+        System.out.println();
     }
 
 
@@ -52,10 +55,12 @@ public class LottoController {
         while (true) {
             try {
                 String input = InputView.winningNumberInput();
-                return winningNumberValidator.winningNumberValidator(input);
+                return winningNumberValidator.validateWinningNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
+
 }

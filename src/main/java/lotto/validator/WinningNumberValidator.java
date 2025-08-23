@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumberValidator {
-    private static final int lottoSize = 6;
+    private static final int LOTTO_SIZE = 6;
 
-    public List<Integer> winningNumberValidator(String input) {
+    public List<Integer> validateWinningNumber(String input) {
         List<String> inputNumber = Arrays.stream(input.split(","))
                 .map(String::trim).collect(Collectors.toList());
 
@@ -35,7 +35,7 @@ public class WinningNumberValidator {
     }
 
     private void validateOverSize(List<Integer> winningNumber) {
-        if (winningNumber.size() != lottoSize) {
+        if (winningNumber.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
         }
     }
