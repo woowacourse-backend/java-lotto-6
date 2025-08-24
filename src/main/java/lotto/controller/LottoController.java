@@ -1,26 +1,30 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.PurchasedLotto;
+import lotto.domain.*;
 import lotto.validator.AmountValidator;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final AmountValidator amountValidator;
     private final LottoMachine lottoMachine;
     private final WinningNumberValidator winningNumberValidator;
     private final BonusNumberValidator bonusNumberValidator;
+    private final LottoWinningStatistics lottoWinningStatistics;
+    private final OutputView outputView;
 
     public LottoController() {
         this.amountValidator = new AmountValidator();
         this.lottoMachine = new LottoMachine();
         this.winningNumberValidator = new WinningNumberValidator();
         this.bonusNumberValidator = new BonusNumberValidator();
+        this.lottoWinningStatistics = new LottoWinningStatistics();
+        this.outputView = new OutputView();
     }
 
     public void run() {
@@ -43,6 +47,11 @@ public class LottoController {
         System.out.println();
 
         System.out.println("bonusNumber = " + bonusNumber);
+
+        // 당첨 통계 부분
+        lottoWinningStatistics.lottoStatistics(purchasedLotto.getLottoList(), winningNumber, bonusNumber);
+        Map<Rank, Integer> statistics = lottoWinningStatistics.getStatistics();
+        outputView.lottoWinningStatistics(statistics);
     }
 
 

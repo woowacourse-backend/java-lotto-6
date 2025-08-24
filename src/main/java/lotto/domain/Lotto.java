@@ -30,4 +30,19 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int findWinningNumber(List<Integer> winningNumber) {
+        int count = 0;
+        for (Integer winningNum : winningNumber) {
+            if (this.numbers.contains(winningNum)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public boolean findBonusNumber(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
 }

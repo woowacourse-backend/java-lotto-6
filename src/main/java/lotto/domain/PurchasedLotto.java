@@ -16,4 +16,8 @@ public class PurchasedLotto {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public List<Lotto> getLottoList() {
+        return lottoList;
+    }
 }
