@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoMachine {
 
     public List<Lotto> issueLotto(int amount) {
-        int count = amount / 1000;
+        int count = amount / LottoRules.LOTTO_PRICE.getValue();
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = generateRandomNumber();

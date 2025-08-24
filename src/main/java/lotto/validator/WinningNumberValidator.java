@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.domain.LottoRules;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumberValidator {
-    private static final int LOTTO_SIZE = 6;
 
     public List<Integer> validateWinningNumber(String input) {
         List<String> inputNumber = Arrays.stream(input.split(","))
@@ -35,7 +36,7 @@ public class WinningNumberValidator {
     }
 
     private void validateOverSize(List<Integer> winningNumber) {
-        if (winningNumber.size() != LOTTO_SIZE) {
+        if (winningNumber.size() != LottoRules.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
         }
     }
