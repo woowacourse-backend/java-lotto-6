@@ -50,33 +50,33 @@
 ---
 
 # 프로그래밍 요구 사항
-- [ ] JDK 17 버전에서 실행 가능해야 한다.
-- [ ] 프로그램 실행 시작점은 `Application`의 `main()` 부분
-- [ ] `build.gradle` 파일 변경 X, 외부 라이브러리 사용 X
+- [x] JDK 21 버전에서 실행 가능해야 한다.
+- [x] 프로그램 실행 시작점은 `Application`의 `main()` 부분
+- [x] `build.gradle` 파일 변경 X, 외부 라이브러리 사용 X
 - [ ] `Java 코드 컨벤션` 가이드를 준수하기
-- [ ] 프로그램 종료 시 `System.exit()`로 호출 X
-- [ ] 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야한다.
-- [ ] 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현, 2까지만 허용
-- [ ] 3항 연산자 사용 X
-- [ ] 메서드가 한 가지 일만 하도록 최대한 작게 만들기.
-- [ ] JUnit5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정삭 동작함을 테스트 코드로 확인
+- [x] 프로그램 종료 시 `System.exit()`로 호출 X
+- [x] 프로그램 구현이 완료되면 `ApplicationTest`의 모든 테스트가 성공해야한다.
+- [x] 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 이름을 수정하거나 이동하지 않는다.
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현, 2까지만 허용
+- [x] 3항 연산자 사용 X
+- [x] 메서드가 한 가지 일만 하도록 최대한 작게 만들기.
+- [x] JUnit5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정삭 동작함을 테스트 코드로 확인
 
 ## 추가된 요구 사항
-- [ ] 메서드의 길이가 15라인을 넘어가지 않도록 구현.
+- [x] 메서드의 길이가 15라인을 넘어가지 않도록 구현.
   - 메서드가 한 가지 일만 잘 하도록 작게 구현하라는 말.
-- [ ] else 예약어 사용 X
+- [x] else 예약어 사용 X
   - if 조건절에서 값을 return하는 방식으로 만들어라.
-- [ ] Java Enum을 적용해라
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(입출력) 로직은 제외.
+- [x] Java Enum을 적용해라
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(입출력) 로직은 제외.
   - 도메인 로직 : 소프트웨어를 개발하는 대상 영역, 이 비즈니스에서 중요한 의사결정을 내리는 코드
-  - [ ] 핵심 로직을 구현하는 코드 와 UI를 담당하는 로직을 분리해야한다.
-  - [ ] 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습 후 테스트 구현
+  - [x] 핵심 로직을 구현하는 코드 와 UI를 담당하는 로직을 분리해야한다.
+  - [x] 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습 후 테스트 구현
 
 ## 라이브러리
-- [ ] `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현
-  - [ ] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
-  - [ ] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용
+- [x] `camp.nextstep.edu.missionutils`에서 제공하는 `Randoms` 및 `Console` API를 사용하여 구현
+  - [x] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용
+  - [x] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용
 
 ## Lotto 클래스
 - 제공된 `Lotto` 클래스를 활용해 구현
@@ -85,7 +85,7 @@
 - `Lotto`의 패키지 변경 가능 O
 ---
 ## 과제 진행 요구사항
-- [ ] Git의 커밋 단위는 `docs/README.md`에 정리한 기능 목록 단위로 추가
+- [x] Git의 커밋 단위는 `docs/README.md`에 정리한 기능 목록 단위로 추가
   - `커밋 메시지 컨벤션` 가이드를 참고해 커밋 메시지를 작성
 - [ ] 과제 진행 및 제출 방법은 `프리코스 과제 제출` 문서를 참고.
 
