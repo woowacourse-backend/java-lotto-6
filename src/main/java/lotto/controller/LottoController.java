@@ -41,17 +41,17 @@ public class LottoController {
         List<Integer> winningNumber = getWinningNumber();
         System.out.println();
 
-        System.out.println("winningNumber = " + winningNumber);
         // 보너스 번호 입력
         int bonusNumber = getBonusNumber(winningNumber);
         System.out.println();
-
-        System.out.println("bonusNumber = " + bonusNumber);
 
         // 당첨 통계 부분
         lottoWinningStatistics.lottoStatistics(purchasedLotto.getLottoList(), winningNumber, bonusNumber);
         Map<Rank, Integer> statistics = lottoWinningStatistics.getStatistics();
         outputView.lottoWinningStatistics(statistics);
+
+        double profit = lottoWinningStatistics.getTotalProfit(buyAmount);
+        outputView.totalProfitPrint(profit);
     }
 
 

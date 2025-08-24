@@ -92,4 +92,22 @@ public class LottoWinningStatisticsTest {
 
         assertThat(result.get(Rank.FIFTH_PLACE)).isEqualTo(1);
     }
+
+    @DisplayName("총 수익률의 계산이 올바른지 확인한다.")
+    @Test
+    void correctTotalProfit() {
+        int buyAmount = 8_000;
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 10, 11, 12)));
+        List<Lotto> lottoList = List.of(lotto);
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        lottoWinningStatistics.lottoStatistics(lottoList, winningNumber, bonusNumber);
+
+        double totalProfit = lottoWinningStatistics.getTotalProfit(buyAmount);
+        String formatTotalProfit = String.format("%.1f", totalProfit);
+
+
+        assertThat(formatTotalProfit).isEqualTo("62.5");
+    }
 }

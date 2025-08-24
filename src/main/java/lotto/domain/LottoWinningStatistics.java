@@ -56,4 +56,15 @@ public class LottoWinningStatistics {
     public Map<Rank, Integer> getStatistics() {
         return new EnumMap<>(statistics);
     }
+
+    public double getTotalProfit(int buyAmount) {
+        int profit = 0;
+        profit += statistics.get(Rank.FIFTH_PLACE) * 5_000;
+        profit += statistics.get(Rank.FOURTH_PLACE) * 50_000;
+        profit += statistics.get(Rank.THIRD_PLACE) * 1_500_000;
+        profit += statistics.get(Rank.SECOND_PLACE) * 30_000_000;
+        profit += statistics.get(Rank.FIRST_PLACE) * 2_000_000_000;
+
+        return (double) (profit) / (double) buyAmount * 100;
+    }
 }

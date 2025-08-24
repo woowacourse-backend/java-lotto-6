@@ -14,6 +14,10 @@ public class OutputView {
         System.out.println("5개 일치 (1,500,000원) - " + statistics.get(Rank.THIRD_PLACE) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + statistics.get(Rank.SECOND_PLACE) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + statistics.get(Rank.FIRST_PLACE) + "개");
+    }
 
+    public void totalProfitPrint(double totalProfit) {
+        String formatTotalProfit = String.format("%.1f", totalProfit);
+        System.out.println("총 수익률은 " + formatTotalProfit + "입니다.");
     }
 }
