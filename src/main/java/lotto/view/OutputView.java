@@ -18,6 +18,6 @@ public class OutputView {
 
     public void totalProfitPrint(double totalProfit) {
         String formatTotalProfit = String.format("%.1f", totalProfit);
-        System.out.println("총 수익률은 " + formatTotalProfit + "입니다.");
+        System.out.println("총 수익률은 " + formatTotalProfit + "%입니다.");
     }
 }
