@@ -1,11 +1,11 @@
 package lotto;
 
 public enum WinningLottoStatus {
-    FIFTH(5, 3, null, 5_000),
-    FOURTH(4, 4, null, 50_000),
-    THIRD(3, 5, Boolean.FALSE, 1_500_000),
-    SECOND(2, 5, Boolean.TRUE, 30_000_000),
-    FIRST(1, 6, null, 2_000_000_000),
+    FIFTH(5, 3, null, 5_000L),
+    FOURTH(4, 4, null, 50_000L),
+    THIRD(3, 5, Boolean.FALSE, 1_500_000L),
+    SECOND(2, 5, Boolean.TRUE, 30_000_000L),
+    FIRST(1, 6, null, 2_000_000_000L),
     ;
 
     private final Integer place;
@@ -13,7 +13,7 @@ public enum WinningLottoStatus {
     private final Boolean matchBonusNumber;
     private final Long price;
 
-    WinningLottoStatus(Integer place, Integer containsCounts, Boolean matchBonusNumber, Integer price) {
+    WinningLottoStatus(Integer place, Integer containsCounts, Boolean matchBonusNumber, Long price) {
         this.place = place;
         this.containsCounts = containsCounts;
         this.matchBonusNumber = matchBonusNumber;
@@ -51,7 +51,7 @@ public enum WinningLottoStatus {
         return matchBonusNumber;
     }
 
-    public Integer getPrice() {
+    public Long getPrice() {
         return price;
     }
 }

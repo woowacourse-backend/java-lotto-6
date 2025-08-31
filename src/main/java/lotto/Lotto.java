@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Lotto(Lotto lotto) {
+        this(lotto.numbers);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
@@ -57,5 +61,10 @@ public class Lotto {
             }
         }
         return count;
+    }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
     }
 }

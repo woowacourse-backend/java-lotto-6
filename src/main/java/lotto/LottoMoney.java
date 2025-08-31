@@ -20,7 +20,7 @@ public class LottoMoney {
         return money / UNIT;
     }
 
-    public double getRevenueRate(long revenue){
-        return (double) revenue /UNIT;
+    public double getRevenueRate(long revenue) {
+        return revenue * 100 / (double) money;
     }
 }

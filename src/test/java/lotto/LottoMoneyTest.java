@@ -28,4 +28,12 @@ class LottoMoneyTest {
                 .isEqualTo(count);
     }
 
+    @Test
+    @DisplayName("getRevenueRate(): 수익율을 반환한다.")
+    void getRevenueRate() {
+        LottoMoney lottoMoney = new LottoMoney(10_000);
+        assertThat(lottoMoney.getRevenueRate(10_000))
+                .isEqualTo(100.0);
+    }
+
 }

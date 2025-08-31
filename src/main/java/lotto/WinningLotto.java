@@ -11,6 +11,12 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public WinningLotto(Lotto lotto, Integer bonusNumber) {
+        super(lotto);
+        validate(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
     private void validate(Integer bonusNumber) {
         validateRange(bonusNumber);
         validateDuplicate(bonusNumber);

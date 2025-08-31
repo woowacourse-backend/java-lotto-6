@@ -1,7 +1,18 @@
 package lotto;
 
+import lotto.controller.Controller;
+import lotto.io.CLIInputView;
+import lotto.io.CLIOutputView;
+import lotto.io.InputView;
+import lotto.io.OutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        OutputView outputView = new CLIOutputView();
+        InputView inputView = new CLIInputView(outputView);
+        LottoService lottoService = new LottoService(new LottoNumbersGeneratorImpl());
+        Controller controller = new Controller(inputView, outputView, lottoService);
+
+        controller.run();
     }
 }

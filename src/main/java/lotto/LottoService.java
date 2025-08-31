@@ -16,7 +16,7 @@ public class LottoService {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public List<Lotto> purchaseLottos(LottoMoney lottoMoney) {
+    public List<Lotto> purchaseLottoList(LottoMoney lottoMoney) {
         int purchaseCount = lottoMoney.getPurchaseCount();
 
         List<Lotto> purchasedLottoList = new ArrayList<>();
@@ -35,6 +35,9 @@ public class LottoService {
 
         for (Lotto lotto : purchasedLottoList) {
             WinningLottoStatus status = WinningLottoStatus.getWinningLottoStatus(winningLotto, lotto);
+            if (status == null) {
+                continue;
+            }
             winningLottoStatusAndCounts.put(status, winningLottoStatusAndCounts.get(status) + 1);
         }
 
@@ -45,15 +48,6 @@ public class LottoService {
         Arrays.stream(WinningLottoStatus.values())
                 .forEach(winningLottoStatus ->
                         winningLottoStatusAndCounts.put(winningLottoStatus, 0));
-    }
-
-    public Integer getPurchaseCounts(LottoMoney lottoMoney) {
-        return lottoMoney.getPurchaseCount();
-    }
-
-    public List<Lotto> getPurchasedLottoList(List<Lotto> purchasedLottoList) {
-        return purchasedLottoList.stream()
-                .toList();
     }
 
     public Double getRevenueRate(Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts, LottoMoney lottoMoney) {

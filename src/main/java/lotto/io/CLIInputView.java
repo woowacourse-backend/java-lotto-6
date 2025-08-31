@@ -6,9 +6,16 @@ import java.util.List;
 
 public class CLIInputView implements InputView {
     public static final String DELIMITER = ",";
+    private final OutputView outputView;
+
+    public CLIInputView(OutputView outputView) {
+        this.outputView = outputView;
+    }
 
     @Override
     public Integer readCost() {
+        outputView.printInstruction("구입금액을 입력해 주세요.");
+
         String input = Console.readLine();
         return parseInteger(input);
     }
@@ -23,6 +30,8 @@ public class CLIInputView implements InputView {
 
     @Override
     public List<Integer> readWinningNumbers() {
+        outputView.printInstruction("당첨 번호를 입력해 주세요.");
+
         return Arrays.stream(Console.readLine()
                         .split(DELIMITER))
                 .map(this::parseInteger)
@@ -31,6 +40,8 @@ public class CLIInputView implements InputView {
 
     @Override
     public Integer readBonusNumber() {
+        outputView.printInstruction("보너스 번호를 입력해 주세요.");
+
         String input = Console.readLine();
         return parseInteger(input);
     }
