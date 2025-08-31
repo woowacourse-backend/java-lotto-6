@@ -28,8 +28,7 @@ public class WinningLotto extends Lotto {
         }
     }
 
-
-    public boolean matchBonusNumber(Integer bonusNumber) {
-        return this.bonusNumber.equals(bonusNumber);
+    public boolean matchBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
     }
 }
