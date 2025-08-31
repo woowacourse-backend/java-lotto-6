@@ -6,7 +6,7 @@ public enum LottoErrorStatus {
     DUPLICATE("로또 번호는 중복 될 수 없습니다."),
     INVALID_RANGE_BONUS_NUMBER("보너스 번호는 %d 부터 %d사이의 숫자여야 합니다.".formatted(Lotto.MIN_VALUE, Lotto.MAX_VALUE)),
     DUPLICATE_BONUS_NUMBER("보너스 번호는 중복 될 수 없습니다."),
-    ;
+    INVALID_MONEY_UNIT("%d 단위의 돈을 입력해 주세요".formatted(LottoMoney.UNIT));
 
     private final String message;
 
