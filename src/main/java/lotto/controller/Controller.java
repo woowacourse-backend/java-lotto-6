@@ -23,26 +23,43 @@ public class Controller {
 
     public void run() {
         try {
-            LottoMoney lottoMoney = new LottoMoney(inputView.readCost());
-            outputView.println();
+            LottoMoney lottoMoney = lottoMoneyControl(inputView.readCost());
+            List<Lotto> lottoList = purchaseControl(lottoMoney);
 
-            List<Lotto> lottoList = lottoService.purchaseLottoList(lottoMoney);
-            outputView.printLottoList(lottoList);
-            outputView.println();
-
-            Lotto lotto = new Lotto(inputView.readWinningNumbers());
-            outputView.println();
-
-            Integer bonusNumber = inputView.readBonusNumber();
-            WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-            outputView.println();
-
-            Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts = lottoService.getWinningLottoStatusAndCounts(
-                    winningLotto, lottoList);
-            Double revenueRate = lottoService.getRevenueRate(winningLottoStatusAndCounts, lottoMoney);
-            outputView.printWinningStatus(winningLottoStatusAndCounts, revenueRate);
-        }catch (IllegalArgumentException e) {
+            WinningLotto winningLotto = winningLottoControl(
+                    inputView.readWinningNumbers(), inputView.readBonusNumber());
+            statusControl(winningLotto, lottoList, lottoMoney);
+            
+        } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
+    }
+
+    private WinningLotto winningLottoControl(List<Integer> numbers, Integer bonusNumber) {
+        Lotto lotto = new Lotto(numbers);
+        outputView.println();
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        outputView.println();
+        return winningLotto;
+    }
+
+    private LottoMoney lottoMoneyControl(Integer cost) {
+        LottoMoney lottoMoney = new LottoMoney(cost);
+        outputView.println();
+        return lottoMoney;
+    }
+
+    private List<Lotto> purchaseControl(LottoMoney lottoMoney) {
+        List<Lotto> lottoList = lottoService.purchaseLottoList(lottoMoney);
+        outputView.printLottoList(lottoList);
+        outputView.println();
+        return lottoList;
+    }
+
+    private void statusControl(WinningLotto winningLotto, List<Lotto> lottoList, LottoMoney lottoMoney) {
+        Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts = lottoService.getWinningLottoStatusAndCounts(
+                winningLotto, lottoList);
+        Double revenueRate = lottoService.getRevenueRate(winningLottoStatusAndCounts, lottoMoney);
+        outputView.printWinningStatus(winningLottoStatusAndCounts, revenueRate);
     }
 }
