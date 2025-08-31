@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum WinningLottoStatus {
     FIFTH(5, 3, null, 5_000L),
@@ -39,16 +39,8 @@ public enum WinningLottoStatus {
         return this.containsCounts == containsCounts;
     }
 
-    public Integer getPlace() {
-        return place;
-    }
-
     public Integer getContainsCounts() {
         return containsCounts;
-    }
-
-    public Boolean getMatchBonusNumber() {
-        return matchBonusNumber;
     }
 
     public Long getPrice() {

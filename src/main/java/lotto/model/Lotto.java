@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
@@ -25,12 +25,16 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream()
-                .distinct()
-                .toList()
-                .size() != SIZE) {
+        if (distinctSize(numbers) != numbers.size()) {
             throw new IllegalArgumentException(LottoErrorStatus.DUPLICATE.getMessage());
         }
+    }
+
+    private int distinctSize(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .toList()
+                .size();
     }
 
     private void validateRange(List<Integer> numbers) {
@@ -49,7 +53,7 @@ public class Lotto {
         }
     }
 
-    public boolean contains(int number) {
+    protected boolean contains(int number) {
         return numbers.contains(number);
     }
 
@@ -64,7 +68,7 @@ public class Lotto {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }

@@ -2,11 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.LottoMoney;
-import lotto.LottoService;
-import lotto.WinningLotto;
-import lotto.WinningLottoStatus;
+import lotto.model.Lotto;
+import lotto.model.LottoMoney;
+import lotto.service.LottoService;
+import lotto.model.WinningLotto;
+import lotto.model.WinningLottoStatus;
 import lotto.io.InputView;
 import lotto.io.OutputView;
 
@@ -29,7 +29,6 @@ public class Controller {
             WinningLotto winningLotto = winningLottoControl(
                     inputView.readWinningNumbers(), inputView.readBonusNumber());
             statusControl(winningLotto, lottoList, lottoMoney);
-            
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
         }
@@ -38,6 +37,7 @@ public class Controller {
     private WinningLotto winningLottoControl(List<Integer> numbers, Integer bonusNumber) {
         Lotto lotto = new Lotto(numbers);
         outputView.println();
+
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
         outputView.println();
         return winningLotto;

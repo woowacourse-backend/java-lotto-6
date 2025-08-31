@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.Lotto;
+import lotto.model.LottoErrorStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -57,7 +59,6 @@ class LottoTest {
     @Nested
     @DisplayName("new Lotto(List<Integer>): ")
     class Create {
-
         public static Stream<List<Integer>> provideInvalidSizeNumbers() {
             return Stream.of(
                     List.of(1, 2, 3, 4, 5),

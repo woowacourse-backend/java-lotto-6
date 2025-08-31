@@ -2,8 +2,8 @@ package lotto.io;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.WinningLottoStatus;
+import lotto.model.Lotto;
+import lotto.model.WinningLottoStatus;
 
 public class CLIOutputView implements OutputView {
     public static final String ERROR_PREFIX = "[ERROR] ";

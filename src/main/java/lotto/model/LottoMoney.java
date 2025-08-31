@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public class LottoMoney {
     public static final Integer UNIT = 1_000;

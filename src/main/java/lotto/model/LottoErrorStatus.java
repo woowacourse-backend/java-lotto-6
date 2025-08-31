@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public enum LottoErrorStatus {
     INVALID_SIZE("로또 번호의 개수는 %d개 여야 합니다.".formatted(Lotto.SIZE)),

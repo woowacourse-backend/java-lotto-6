@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,12 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
+import lotto.model.Lotto;
+import lotto.model.LottoMoney;
+import lotto.model.LottoNumberGenerator;
+import lotto.model.WinningLotto;
+import lotto.model.WinningLottoStatus;
 
 public class LottoService {
     private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoService(
-            LottoNumberGenerator lottoNumberGenerator) {
+    public LottoService(LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
@@ -21,7 +25,8 @@ public class LottoService {
 
         List<Lotto> purchasedLottoList = new ArrayList<>();
         for (int i = 0; i < purchaseCount; i++) {
-            purchasedLottoList.add(new Lotto(lottoNumberGenerator.getOrderedLottoNumbers()));
+            Lotto lotto = new Lotto(lottoNumberGenerator.getOrderedLottoNumbers());
+            purchasedLottoList.add(lotto);
         }
         return purchasedLottoList;
     }
@@ -51,13 +56,16 @@ public class LottoService {
     }
 
     public Double getRevenueRate(Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts, LottoMoney lottoMoney) {
-        Long revenue = winningLottoStatusAndCounts.entrySet()
+        Long revenue = getRevenue(winningLottoStatusAndCounts);
+        return lottoMoney.getRevenueRate(revenue);
+    }
+
+    private Long getRevenue(Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts) {
+        return winningLottoStatusAndCounts.entrySet()
                 .stream()
                 .map(getProductOfPriceAndCount())
                 .reduce(Long::sum)
                 .orElse(0L);
-
-        return lottoMoney.getRevenueRate(revenue);
     }
 
     private Function<Entry<WinningLottoStatus, Integer>, Long> getProductOfPriceAndCount() {
