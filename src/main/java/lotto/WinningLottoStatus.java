@@ -11,7 +11,7 @@ public enum WinningLottoStatus {
     private final Integer place;
     private final Integer containsCounts;
     private final Boolean matchBonusNumber;
-    private final Integer price;
+    private final Long price;
 
     WinningLottoStatus(Integer place, Integer containsCounts, Boolean matchBonusNumber, Integer price) {
         this.place = place;

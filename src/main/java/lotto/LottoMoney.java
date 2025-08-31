@@ -19,4 +19,8 @@ public class LottoMoney {
     public Integer getPurchaseCount() {
         return money / UNIT;
     }
+
+    public double getRevenueRate(long revenue){
+        return (double) revenue /UNIT;
+    }
 }
