@@ -10,23 +10,15 @@ import java.util.function.Function;
 
 public class LottoService {
     private final LottoNumberGenerator lottoNumberGenerator;
-    private final WinningLotto winningLotto;
-    private final LottoMoney lottoMoney;
-    private final List<Lotto> purchasedLottoList;
-    private final Map<WinningLottoStatus, Integer> status;
 
     public LottoService(
-            LottoNumberGenerator lottoNumberGenerator,
-            WinningLotto winningLotto,
-            LottoMoney lottoMoney) {
+            LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
-        this.winningLotto = winningLotto;
-        this.lottoMoney = lottoMoney;
-        this.purchasedLottoList = purchaseLottos(lottoMoney.getPurchaseCount());
-        status = getWinningLottoStatusAndCounts();
     }
 
-    private List<Lotto> purchaseLottos(Integer purchaseCount) {
+    public List<Lotto> purchaseLottos(LottoMoney lottoMoney) {
+        int purchaseCount = lottoMoney.getPurchaseCount();
+
         List<Lotto> purchasedLottoList = new ArrayList<>();
         for (int i = 0; i < purchaseCount; i++) {
             purchasedLottoList.add(new Lotto(lottoNumberGenerator.getOrderedLottoNumbers()));
@@ -34,13 +26,15 @@ public class LottoService {
         return purchasedLottoList;
     }
 
-    private Map<WinningLottoStatus, Integer> getWinningLottoStatusAndCounts() {
+    public Map<WinningLottoStatus, Integer> getWinningLottoStatusAndCounts(
+            WinningLotto winningLotto,
+            List<Lotto> purchasedLottoList
+    ) {
         Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts = new HashMap<>();
         putWinningLottoStatus(winningLottoStatusAndCounts);
 
         for (Lotto lotto : purchasedLottoList) {
             WinningLottoStatus status = WinningLottoStatus.getWinningLottoStatus(winningLotto, lotto);
-
             winningLottoStatusAndCounts.put(status, winningLottoStatusAndCounts.get(status) + 1);
         }
 
@@ -53,18 +47,18 @@ public class LottoService {
                         winningLottoStatusAndCounts.put(winningLottoStatus, 0));
     }
 
-
-    public Integer getPurchaseCounts() {
+    public Integer getPurchaseCounts(LottoMoney lottoMoney) {
         return lottoMoney.getPurchaseCount();
     }
 
-    public List<Lotto> getPurchasedLottoList() {
+    public List<Lotto> getPurchasedLottoList(List<Lotto> purchasedLottoList) {
         return purchasedLottoList.stream()
                 .toList();
     }
 
-    public Double getRevenueRate() {
-        Long revenue = status.entrySet().stream()
+    public Double getRevenueRate(Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts, LottoMoney lottoMoney) {
+        Long revenue = winningLottoStatusAndCounts.entrySet()
+                .stream()
                 .map(getProductOfPriceAndCount())
                 .reduce(Long::sum)
                 .orElse(0L);
@@ -74,9 +68,5 @@ public class LottoService {
 
     private Function<Entry<WinningLottoStatus, Integer>, Long> getProductOfPriceAndCount() {
         return entry -> (long) entry.getKey().getPrice() * entry.getValue();
-    }
-
-    public Map<WinningLottoStatus, Integer> getStatus() {
-        return status;
     }
 }
