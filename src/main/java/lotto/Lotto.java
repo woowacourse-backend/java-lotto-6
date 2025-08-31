@@ -42,4 +42,14 @@ public class Lotto {
             throw new IllegalArgumentException(LottoErrorStatus.INVALID_SIZE.getMessage());
         }
     }
+
+    public int contains(Lotto otherLotto) {
+        int count = 0;
+        for (Integer otherNumber : otherLotto.numbers) {
+            if (numbers.contains(otherNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
