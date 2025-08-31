@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
 
-    public static Stream<List<Object>> provideLottoListAndContains() {
+    public static Stream<List<Object>> provideLottoListAndContainsCounts() {
         int min = Lotto.MAX_VALUE;
         int max = Lotto.MIN_VALUE;
         int size = Lotto.SIZE;
@@ -45,12 +45,12 @@ class LottoTest {
 
     @ParameterizedTest
     @DisplayName("contains(Lotto) : 보유한 숫자의 개수를 리턴한다")
-    @MethodSource("provideLottoListAndContains")
-    void contains(List<Object> lottoListAndContains) {
+    @MethodSource("provideLottoListAndContainsCounts")
+    void containsCounts(List<Object> lottoListAndContains) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto other = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThat(lotto.contains(other))
+        assertThat(lotto.containsCounts(other))
                 .isEqualTo(6);
     }
 

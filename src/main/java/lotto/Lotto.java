@@ -30,9 +30,11 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream()
-                .anyMatch(number ->
-                        number > MAX_VALUE || number < MIN_VALUE)) {
+        numbers.forEach(this::validateRange);
+    }
+
+    private void validateRange(Integer number) {
+        if (number < MIN_VALUE || number > MAX_VALUE) {
             throw new IllegalArgumentException(LottoErrorStatus.INVALID_RANGE.getMessage());
         }
     }
@@ -43,10 +45,14 @@ public class Lotto {
         }
     }
 
-    public int contains(Lotto otherLotto) {
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int containsCounts(Lotto otherLotto) {
         int count = 0;
         for (Integer otherNumber : otherLotto.numbers) {
-            if (numbers.contains(otherNumber)) {
+            if (contains(otherNumber)) {
                 count++;
             }
         }
