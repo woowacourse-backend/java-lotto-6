@@ -29,12 +29,12 @@ public class WinningLotto extends Lotto {
     }
 
     private void validateDuplicate(Integer bonusNumber) {
-        if (contains(bonusNumber)) {
+        if (super.contains(bonusNumber)) {
             throw new IllegalArgumentException(LottoErrorStatus.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
-    public boolean matchBonusNumber(Lotto lotto) {
+    public boolean matchBonus(Lotto lotto) {
         return lotto.contains(bonusNumber);
     }
 }

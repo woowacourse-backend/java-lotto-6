@@ -57,14 +57,11 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int containsCounts(Lotto otherLotto) {
-        int count = 0;
-        for (Integer otherNumber : otherLotto.numbers) {
-            if (contains(otherNumber)) {
-                count++;
-            }
-        }
-        return count;
+    public int matchCount(Lotto otherLotto) {
+        return numbers.stream()
+                .filter(otherLotto::contains)
+                .toList()
+                .size();
     }
 
     @Override

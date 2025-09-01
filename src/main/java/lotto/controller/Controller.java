@@ -2,13 +2,13 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.LottoMoney;
-import lotto.service.LottoService;
-import lotto.model.WinningLotto;
-import lotto.model.WinningLottoStatus;
 import lotto.io.InputView;
 import lotto.io.OutputView;
+import lotto.model.Lotto;
+import lotto.model.LottoMoney;
+import lotto.model.LottoRank;
+import lotto.model.WinningLotto;
+import lotto.service.LottoService;
 
 public class Controller {
     private final InputView inputView;
@@ -28,6 +28,7 @@ public class Controller {
 
             WinningLotto winningLotto = winningLottoControl(
                     inputView.readWinningNumbers(), inputView.readBonusNumber());
+
             statusControl(winningLotto, lottoList, lottoMoney);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
@@ -50,16 +51,16 @@ public class Controller {
     }
 
     private List<Lotto> purchaseControl(LottoMoney lottoMoney) {
-        List<Lotto> lottoList = lottoService.purchaseLottoList(lottoMoney);
+        List<Lotto> lottoList = lottoService.purchaseTicket(lottoMoney);
         outputView.printLottoList(lottoList);
         outputView.println();
         return lottoList;
     }
 
     private void statusControl(WinningLotto winningLotto, List<Lotto> lottoList, LottoMoney lottoMoney) {
-        Map<WinningLottoStatus, Integer> winningLottoStatusAndCounts = lottoService.getWinningLottoStatusAndCounts(
-                winningLotto, lottoList);
-        Double revenueRate = lottoService.getRevenueRate(winningLottoStatusAndCounts, lottoMoney);
-        outputView.printWinningStatus(winningLottoStatusAndCounts, revenueRate);
+        Map<LottoRank, Integer> rankResults =
+                lottoService.getRankResults(winningLotto, lottoList);
+        Double revenueRate = lottoService.getRevenueRate(rankResults, lottoMoney);
+        outputView.printWinningStatus(rankResults, revenueRate);
     }
 }
