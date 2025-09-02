@@ -10,7 +10,7 @@ public enum Rank {
     Correct_5(5, "3등", "5개 일치 (1,500,000원)", 1500000, false),
     Correct_5_And_Bonus(5, "2등", "5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000, true),
     Correct_6(6, "1등", "6개 일치 (2,000,000,000원)", 2000000000, false),
-    Correct_Not(0, null, null, 0, null),
+    Correct_Not(0, null, null, 0, false),
     ;
 
     private final int winningNumber;
