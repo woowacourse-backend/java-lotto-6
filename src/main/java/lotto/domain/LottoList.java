@@ -16,8 +16,9 @@ public class LottoList {
         lottos.add(lotto);
     }
 
+
     public Map<Rank, Integer> resultWinningLottos(WinningLotto winningLotto) {
-        Map<Rank, Integer> result = new HashMap<>();
+        Map<Rank, Integer> result = initialMap();
 
         for (Lotto lotto : lottos) {
             Rank rank = winningLotto.match(lotto);
@@ -25,6 +26,15 @@ public class LottoList {
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         return result;
+    }
+
+    private Map<Rank, Integer> initialMap() {
+        Map<Rank, Integer> map = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            map.put(rank, 0);
+        }
+        map.remove(Rank.Correct_Not);
+        return map;
     }
 
     public String printAllLottos() {
